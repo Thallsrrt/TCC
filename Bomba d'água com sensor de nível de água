@@ -1,0 +1,36 @@
+//Programa: Teste sensor liquido Arduino
+//Autor: Arduino e Cia
+
+int pinoRele = 2;
+//Pino ligado ao sensor de nivel de liquido
+int pinosensor = 3;
+//Led verde
+int pino_led_cheio = 7;
+//Led vermelho
+int pino_led_vazio = 6;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(pinoRele, OUTPUT);
+  pinMode(pinosensor, INPUT);
+  pinMode(pino_led_cheio, OUTPUT);
+  pinMode(pino_led_vazio, OUTPUT);
+}
+
+void loop()
+{
+  int estado = digitalRead(pinosensor);
+  Serial.print("Estado sensor : ");
+  Serial.println(estado);
+  switch(estado)
+  {
+  case 0:
+    digitalWrite(pinoRele, HIGH);
+    break;
+  case 1:
+    digitalWrite(pinoRele, LOW);
+    break;
+  }
+  delay(100);
+}
