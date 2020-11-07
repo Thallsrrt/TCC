@@ -11,6 +11,7 @@
 DHT dht(DHTPIN, DHTTYPE);
 
 int pinoRele = 2;
+int pinoRele2 = 3;
  
 void setup() 
 {
@@ -27,14 +28,16 @@ void loop()
   float h = dht.readHumidity();
   float t = dht.readTemperature();
   // testa se retorno Ã© valido, caso contrÃ¡rio algo estÃ¡ errado.
-  if (t < 27) 
+  if ( 21 < t < 26) 
   {
     digitalWrite(pinoRele, HIGH);
+    digitalWrite(pinoRele2, LOW);
        Serial.println(t);
   } 
-  else
+  else if ( t < 20 )
   {
    digitalWrite(pinoRele, LOW);
+   digitalWrite(pinoRele2, HIGH);
    Serial.println(t);
   }
 }
